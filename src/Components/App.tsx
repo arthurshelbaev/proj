@@ -6,9 +6,9 @@ import data from "../data.json";
 type Language = "ru" | "en";
 
 type Review = {
-    name: string;
-    review: string;
-    date: string;
+  name: string;
+  review: string;
+  date: string;
 };
 
 type Data = {
@@ -35,7 +35,11 @@ class App extends Component<{}, AppState> {
     return (
       <div>
         <Header onSelectLanguage={this.handleLanguageChange} />
-        <Main data={data as Data} selectedLanguage={selectedLanguage} />
+        <Main
+          data={data as Data}
+          selectedLanguage={selectedLanguage}
+          onSelectLanguage={this.handleLanguageChange} // Добавлена передача onSelectLanguage в компонент Main
+        />
       </div>
     );
   }

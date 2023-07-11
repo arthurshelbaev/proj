@@ -41,20 +41,20 @@ class Header extends Component<HeaderProps> {
 
   render() {
     return (
-        <header className="header_wrapper">
-          <div className="logo_case">
-            <img
-              className="logo"
-              src="https://creazilla-store.fra1.digitaloceanspaces.com/icons/3247781/javascript-icon-md.png"
-              alt="Logo"
-            />
-          </div>
-          <Clock />
-          <select onChange={this.handleLanguageChange}>
-            <option value="ru">Ru</option>
-            <option value="en">En</option>
-          </select>
-        </header>
+      <header className="header_wrapper">
+        <div className="logo_case">
+          <img
+            className="logo"
+            src="https://creazilla-store.fra1.digitaloceanspaces.com/icons/3247781/javascript-icon-md.png"
+            alt="Logo"
+          />
+        </div>
+        <Clock />
+        <select onChange={this.handleLanguageChange} defaultValue="ru">
+          <option value="ru">Ru</option>
+          <option value="en">En</option>
+        </select>
+      </header>
     );
   }
 }

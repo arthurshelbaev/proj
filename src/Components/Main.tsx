@@ -12,6 +12,7 @@ type MainProps = {
     en: Review[];
   };
   selectedLanguage: "ru" | "en" | null;
+  onSelectLanguage: (language: "ru" | "en" | null) => void; // Добавлено свойство onSelectLanguage
 };
 
 type MainState = {
@@ -22,6 +23,13 @@ class Main extends Component<MainProps, MainState> {
   state: MainState = {
     currentPage: 1,
   };
+
+  componentDidMount() {
+    const { selectedLanguage } = this.props;
+    if (selectedLanguage === null) {
+      this.props.onSelectLanguage("ru");
+    }
+  }
 
   componentDidUpdate(prevProps: MainProps) {
     if (
