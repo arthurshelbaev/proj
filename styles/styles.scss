@@ -1,63 +1,126 @@
 body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    .header_wrapper {
-        box-shadow: 0 0 6px 0.1px black;
-        display: flex;
-        justify-content: space-around;
-        padding: 10px 0;
-        .logo_case {
-            display: flex;
-            align-items: center;
-            .logo {
-                height: 50px;
-            }
-        }
-        .clock {
-            font-size: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1px;
-            .block {
-                width: 30px;
-                display: flex;
-                justify-content: center;
-            }
-        }
-        select {
-            height: max-content;
-            padding: 3px 10px;
-            border-radius: 5px;
-            display: flex;
-            align-self: center;
-        }                      
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+
+  .header_wrapper {
+    background-color: #f8f8f8;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    .logo_case {
+      display: flex;
+      align-items: center;
+
+      .logo {
+        height: 50px;
+      }
     }
-    .main {
+
+    .clock {
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      .block {
+        width: 30px;
+        height: 30px;
         display: flex;
         justify-content: center;
-        margin: 20px 0;
-        .reviews {
-            display: flex;
-            flex-direction: column;
-            width: 50vw;
-            gap: 20px;
-            .review {
-                display: flex;
-                justify-content: space-between;
-                border: 2px solid black;
-                border-radius: 10px;
-                padding: 10px;
-                gap: 50px 0;
-                .case {
-                    width: 10%;
-                    display: flex;
-                    align-items: center;
-                }
-                .text {
-                    width: 50%;
-                }
-            }
-        }
+        align-items: center;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
     }
+
+    select {
+      height: 40px;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 4px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      font-size: 16px;
+      color: #333;
+    }
+  }
+
+  .main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+
+    .reviews {
+      background-color: #f8f8f8;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      .review {
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+
+        .review-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 10px;
+          font-weight: bold;
+        }
+
+        .review-date {
+          color: #888;
+        }
+
+        .review-name {
+          color: #333;
+        }
+
+        .review-text {
+          color: #555;
+          line-height: 1.4;
+          margin-top: 10px;
+        }
+      }
+    }
+
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+
+      button {
+        padding: 8px 12px;
+        margin: 0 5px;
+        border: none;
+        background-color: #f8f8f8;
+        font-size: 16px;
+        color: #333;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &.active {
+          background-color: #ccc;
+          color: #fff;
+        }
+
+        &:hover {
+          background-color: #ebebeb;
+        }
+      }
+
+      span {
+        margin: 0 5px;
+        color: #888;
+      }
+    }
+  }
 }

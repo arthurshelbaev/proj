@@ -14,24 +14,84 @@ type MainProps = {
   selectedLanguage: "ru" | "en" | null;
 };
 
-class Main extends Component<MainProps> {
+type MainState = {
+  currentPage: number;
+};
+
+class Main extends Component<MainProps, MainState> {
+  state: MainState = {
+    currentPage: 1,
+  };
+
+  componentDidUpdate(prevProps: MainProps) {
+    if (
+      prevProps.selectedLanguage !== this.props.selectedLanguage ||
+      prevProps.data !== this.props.data
+    ) {
+      this.goToPage(1);
+    }
+  }
+
+  goToPage = (page: number) => {
+    this.setState({ currentPage: page });
+  };
+
   render() {
     const { data, selectedLanguage } = this.props;
-    const reviews = selectedLanguage
-      ? data[selectedLanguage]
-      : [...data.ru, ...data.en];
+    const { currentPage } = this.state;
+    const reviewsPerPage = 10;
+
+    const reviews = selectedLanguage === "ru" ? data.ru : data.en;
+
+    const startIndex = (currentPage - 1) * reviewsPerPage;
+    const endIndex = startIndex + reviewsPerPage;
+    const displayedReviews = reviews.slice(startIndex, endIndex);
+
+    const totalPages = Math.ceil(reviews.length / reviewsPerPage);
 
     return (
-      <main className='main'>
+      <main className="main">
         <div className="reviews">
-          {reviews.map((review, index) => (
-            <div className='review' key={index}>
-              <div className="date case">{review.date}</div>
-              <div className="name case">{review.name}</div>
-              <div className="text case">{review.review}</div>
+          {displayedReviews.map((review, index) => (
+            <div className="review" key={index}>
+              <div className="review-header">
+                <div className="review-date">{review.date}</div>
+                <div className="review-name">{review.name}</div>
+              </div>
+              <div className="review-text">{review.review}</div>
             </div>
           ))}
-          </div>
+        </div>
+
+        <div className="pagination">
+          {currentPage > 1 && (
+            <button onClick={() => this.goToPage(currentPage - 1)}>←</button>
+          )}
+
+          {currentPage > 2 && (
+            <>
+              <button onClick={() => this.goToPage(1)}>1</button>
+              {currentPage !== 3 && <span>...</span>}
+            </>
+          )}
+
+          <button className="active" onClick={() => this.goToPage(currentPage)}>
+            {currentPage}
+          </button>
+
+          {currentPage < totalPages - 1 && (
+            <>
+              {currentPage !== totalPages - 2 && <span>...</span>}
+              <button onClick={() => this.goToPage(totalPages)}>
+                {totalPages}
+              </button>
+            </>
+          )}
+
+          {currentPage < totalPages && (
+            <button onClick={() => this.goToPage(currentPage + 1)}>→</button>
+          )}
+        </div>
       </main>
     );
   }
