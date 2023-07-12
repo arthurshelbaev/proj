@@ -12,7 +12,7 @@ type MainProps = {
     en: Review[];
   };
   selectedLanguage: "ru" | "en" | null;
-  onSelectLanguage: (language: "ru" | "en" | null) => void; // Добавлено свойство onSelectLanguage
+  onSelectLanguage: (language: "ru" | "en" | null) => void;
 };
 
 type MainState = {
@@ -25,9 +25,13 @@ class Main extends Component<MainProps, MainState> {
   };
 
   componentDidMount() {
-    const { selectedLanguage } = this.props;
-    if (selectedLanguage === null) {
-      this.props.onSelectLanguage("ru");
+    const selectedLanguage = localStorage.getItem("selectedLanguage") as
+      | "ru"
+      | "en"
+      | null;
+    
+    if (selectedLanguage !== null) {
+      this.props.onSelectLanguage(selectedLanguage);
     }
   }
 
@@ -54,7 +58,6 @@ class Main extends Component<MainProps, MainState> {
     const startIndex = (currentPage - 1) * reviewsPerPage;
     const endIndex = startIndex + reviewsPerPage;
     const displayedReviews = reviews.slice(startIndex, endIndex);
-
     const totalPages = Math.ceil(reviews.length / reviewsPerPage);
 
     return (

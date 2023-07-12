@@ -1,4 +1,4 @@
-import React, { Component, ChangeEvent, useEffect, useState } from "react";
+import React, { Component, ChangeEvent, useState, useEffect } from "react";
 
 type HeaderProps = {
   onSelectLanguage: (language: "ru" | "en" | null) => void;
@@ -37,6 +37,7 @@ class Header extends Component<HeaderProps> {
   handleLanguageChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const selectedLanguage = event.target.value as "ru" | "en" | "";
     this.props.onSelectLanguage(selectedLanguage || null);
+    localStorage.setItem("selectedLanguage", selectedLanguage);
   };
 
   render() {
@@ -50,7 +51,10 @@ class Header extends Component<HeaderProps> {
           />
         </div>
         <Clock />
-        <select onChange={this.handleLanguageChange} defaultValue="ru">
+        <select
+          onChange={this.handleLanguageChange}
+          defaultValue={localStorage.getItem("selectedLanguage") || "ru"}
+        >
           <option value="ru">Ru</option>
           <option value="en">En</option>
         </select>

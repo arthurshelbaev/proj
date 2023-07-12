@@ -38,7 +38,7 @@ class App extends Component<{}, AppState> {
         <Main
           data={data as Data}
           selectedLanguage={selectedLanguage}
-          onSelectLanguage={this.handleLanguageChange} // Добавлена передача onSelectLanguage в компонент Main
+          onSelectLanguage={this.handleLanguageChange}
         />
       </div>
     );
